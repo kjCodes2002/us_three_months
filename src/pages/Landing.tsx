@@ -21,10 +21,10 @@ export default function Landing() {
   const { invoke: begin, isPending } = useGuardedAction(() => navigate(getEntryPath()))
 
   return (
-    <main className="safe-px relative flex min-h-dvh flex-1 flex-col items-center justify-center overflow-hidden px-4 sm:px-6">
+    <main className="safe-px safe-pt safe-pb relative flex min-h-dvh flex-1 flex-col items-center justify-center overflow-x-hidden">
       <PremiumBackground />
 
-      <div className="relative z-10 flex w-full max-w-xl flex-col items-center gap-6 text-center sm:gap-8 md:gap-10">
+      <div className="relative z-10 flex w-full min-w-0 max-w-xl flex-col items-center gap-6 text-center sm:gap-8 md:gap-10">
         <motion.h1
           {...fadeUp(0.4)}
           className="font-display text-balance text-[clamp(1.875rem,5vw+0.75rem,3.75rem)] leading-tight font-light tracking-wide text-text"

@@ -35,7 +35,7 @@ export default function Final() {
   }
 
   return (
-    <main className="relative flex min-h-dvh flex-1 flex-col overflow-hidden bg-black">
+    <main className="relative flex min-h-dvh flex-1 flex-col overflow-x-hidden bg-black">
       <AnimatePresence>
         {stage === 'finale' || stage === 'closing' ? (
           <motion.div
@@ -49,7 +49,7 @@ export default function Final() {
         ) : null}
       </AnimatePresence>
 
-      <div className="safe-px safe-pb relative z-10 flex min-h-dvh flex-1 flex-col items-center justify-center py-10 sm:py-16">
+      <div className="safe-px safe-pt safe-pb relative z-10 flex min-h-dvh min-w-0 flex-1 flex-col items-center justify-start overflow-x-hidden overflow-y-auto py-8 sm:justify-center sm:py-16">
         <AnimatePresence mode="wait">
           {stage === 'black' && (
             <motion.div
@@ -68,7 +68,7 @@ export default function Final() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="w-full"
+              className="w-full min-w-0"
             >
               <FinalLetter paragraphs={FINAL_LETTER} onComplete={() => setStage('proposal')} />
             </motion.div>
@@ -81,7 +81,7 @@ export default function Final() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.9, ease }}
-              className="w-full"
+              className="w-full min-w-0"
             >
               <ProposalSection proposal={FINAL_PROPOSAL} onAccept={() => setStage('finale')} />
             </motion.div>
@@ -93,7 +93,7 @@ export default function Final() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.2, ease }}
-              className="flex flex-col items-center gap-6 px-4 text-center sm:gap-8 sm:px-6"
+              className="flex w-full min-w-0 flex-col items-center gap-6 text-center sm:gap-8"
             >
               <h1 className="font-display text-balance text-[clamp(1.5rem,4.5vw+0.75rem,3rem)] font-light tracking-wide text-accent-soft">
                 Happy Three Months, Jaan. ❤️

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 
 type LockPhase = 'enter' | 'shake' | 'unlock' | 'fade'
 
@@ -9,21 +10,33 @@ interface LockAnimationProps {
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+const LOCK_DURATION_MS = 800
+
 export function LockAnimation({ onComplete }: LockAnimationProps) {
+  const prefersReducedMotion = usePrefersReducedMotion()
   const [phase, setPhase] = useState<LockPhase>('enter')
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setPhase('unlock')
+      const timer = setTimeout(() => {
+        setPhase('fade')
+        onComplete()
+      }, 400)
+      return () => clearTimeout(timer)
+    }
+
     const timers = [
-      setTimeout(() => setPhase('shake'), 180),
-      setTimeout(() => setPhase('unlock'), 480),
-      setTimeout(() => setPhase('fade'), 780),
-      setTimeout(onComplete, 1000),
+      setTimeout(() => setPhase('shake'), 140),
+      setTimeout(() => setPhase('unlock'), 380),
+      setTimeout(() => setPhase('fade'), 620),
+      setTimeout(onComplete, LOCK_DURATION_MS),
     ]
 
     return () => timers.forEach(clearTimeout)
-  }, [onComplete])
+  }, [onComplete, prefersReducedMotion])
 
-  const isShaking = phase === 'shake'
+  const isShaking = phase === 'shake' && !prefersReducedMotion
   const isLocked = phase !== 'unlock' && phase !== 'fade'
   const isGlowing = phase === 'shake' || phase === 'unlock'
 

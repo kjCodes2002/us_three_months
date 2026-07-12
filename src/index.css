@@ -28,6 +28,7 @@
     @apply antialiased;
     color-scheme: dark;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
     -webkit-text-size-adjust: 100%;
   }
 
@@ -35,12 +36,13 @@
     @apply bg-surface font-body text-text min-h-dvh;
     margin: 0;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
     -webkit-user-select: none;
     user-select: none;
   }
 
   #root {
-    @apply min-h-dvh;
+    @apply min-h-dvh min-w-0;
     overflow-x: hidden;
   }
 
@@ -49,6 +51,14 @@
   [role='option'] {
     -webkit-user-select: none;
     user-select: none;
+  }
+
+  button:focus-visible,
+  [role='button']:focus-visible,
+  [role='option']:focus-visible,
+  a:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-accent) 55%, transparent);
+    outline-offset: 2px;
   }
 
   img,
@@ -71,10 +81,23 @@
 @utility safe-px {
   padding-left: max(1rem, env(safe-area-inset-left));
   padding-right: max(1rem, env(safe-area-inset-right));
+
+  @media (width >= 640px) {
+    padding-left: max(1.5rem, env(safe-area-inset-left));
+    padding-right: max(1.5rem, env(safe-area-inset-right));
+  }
+}
+
+@utility safe-pt {
+  padding-top: max(1rem, env(safe-area-inset-top));
 }
 
 @utility safe-pb {
   padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@utility scroll-mt-safe {
+  scroll-margin-top: max(1rem, env(safe-area-inset-top));
 }
 
 @utility selectable-text {

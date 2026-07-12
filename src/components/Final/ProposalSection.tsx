@@ -110,13 +110,13 @@ export function ProposalSection({ proposal, onAccept }: ProposalSectionProps) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease }}
-      className="safe-px flex w-full flex-col items-center gap-8 px-4 text-center sm:gap-10 sm:px-6"
+      className="safe-px flex w-full min-w-0 flex-col items-center gap-8 text-center sm:gap-10"
     >
-      <p className="font-display text-balance max-w-md text-[clamp(1.375rem,4vw+0.75rem,1.875rem)] font-light leading-relaxed tracking-wide whitespace-pre-line text-text">
+      <p className="font-display text-balance max-w-md break-words text-[clamp(1.375rem,4vw+0.75rem,1.875rem)] font-light leading-relaxed tracking-wide whitespace-pre-line text-text">
         {proposal}
       </p>
 
-      <div className="flex w-full max-w-sm flex-col items-stretch gap-4 sm:max-w-md">
+      <div className="flex w-full min-w-0 max-w-sm flex-col items-stretch gap-4 sm:max-w-md">
         <Button
           className="font-serif w-full px-8 py-3.5 text-base tracking-wider transition-shadow duration-500 hover:shadow-[0_0_28px_rgba(201,169,98,0.2)] sm:w-auto sm:self-center"
           disabled={isAccepting}

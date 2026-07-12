@@ -109,10 +109,10 @@ export default function Opening() {
   }, [scene])
 
   return (
-    <main className="safe-px relative flex min-h-dvh flex-1 flex-col items-center justify-center overflow-hidden px-4 sm:px-6">
+    <main className="safe-px safe-pt safe-pb relative flex min-h-dvh flex-1 flex-col items-center justify-center overflow-x-hidden">
       <PremiumBackground />
 
-      <div className="relative z-10 flex w-full max-w-xl items-center justify-center">
+      <div className="relative z-10 flex w-full min-w-0 max-w-xl items-center justify-center">
         <AnimatePresence mode="wait">
           {scene === 1 && (
             <motion.div key="scene-1" {...sceneTransition} className="w-full">

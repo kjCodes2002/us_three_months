@@ -1,24 +1,12 @@
-import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 interface VoiceNotePlayerProps {
   src: string
-  onComplete: () => void
-  animate?: boolean
 }
 
-const ease = [0.22, 1, 0.36, 1] as const
-
-export function VoiceNotePlayer({ src, onComplete, animate = true }: VoiceNotePlayerProps) {
+export function VoiceNotePlayer({ src }: VoiceNotePlayerProps) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [isPlaying, setIsPlaying] = useState(false)
-
-  useEffect(() => {
-    if (!animate) return
-
-    const timer = setTimeout(onComplete, 1200)
-    return () => clearTimeout(timer)
-  }, [animate, onComplete])
 
   const togglePlay = () => {
     const audio = audioRef.current
@@ -35,12 +23,7 @@ export function VoiceNotePlayer({ src, onComplete, animate = true }: VoiceNotePl
   }
 
   return (
-    <motion.div
-      initial={animate ? { opacity: 0, y: 16 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1, ease }}
-      className="mx-auto w-full max-w-lg rounded-md border border-border-subtle bg-surface-overlay px-5 py-4 shadow-[0_4px_24px_rgba(0,0,0,0.2)] sm:px-6 sm:py-5"
-    >
+    <div className="mx-auto w-full min-w-0 max-w-lg rounded-md border border-border-subtle bg-surface-overlay px-5 py-4 shadow-[0_4px_24px_rgba(0,0,0,0.2)] sm:px-6 sm:py-5">
       <audio
         ref={audioRef}
         src={src}
@@ -53,7 +36,7 @@ export function VoiceNotePlayer({ src, onComplete, animate = true }: VoiceNotePl
           type="button"
           aria-label={isPlaying ? 'Pause voice note' : 'Play voice note'}
           onClick={togglePlay}
-          className="flex size-11 shrink-0 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-accent-soft transition-colors duration-300 hover:border-accent/60 hover:bg-accent/20"
+          className="flex size-11 shrink-0 touch-manipulation items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-accent-soft outline-none transition-colors duration-300 hover:border-accent/60 hover:bg-accent/20 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-overlay"
         >
           {isPlaying ? (
             <svg viewBox="0 0 24 24" fill="currentColor" className="size-4" aria-hidden>
@@ -72,6 +55,6 @@ export function VoiceNotePlayer({ src, onComplete, animate = true }: VoiceNotePl
           <p className="font-serif text-xs text-text-muted">Tap to listen</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

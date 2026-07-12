@@ -18,7 +18,7 @@ export function Envelope({ isOpen, onClick }: EnvelopeProps) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       whileHover={isOpen ? undefined : { y: -3, scale: 1.01 }}
       transition={{ duration: 1, ease }}
-      className="relative mx-auto aspect-[4/3] w-full max-w-[min(100%,20rem)] cursor-pointer disabled:cursor-default sm:max-w-xs md:max-w-sm"
+      className="relative mx-auto aspect-[4/3] w-full max-w-[min(100%,20rem)] touch-manipulation overflow-hidden rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-default sm:max-w-xs md:max-w-sm"
       style={{ perspective: 900 }}
     >
       <div className="absolute inset-x-0 bottom-0 h-[72%] rounded-md border border-border bg-[#161412] shadow-[0_8px_32px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(201,169,98,0.06)]" />

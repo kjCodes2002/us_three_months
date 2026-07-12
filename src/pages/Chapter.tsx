@@ -19,9 +19,9 @@ export default function ChapterPage() {
   }
 
   return (
-    <main className="relative flex min-h-dvh flex-1 flex-col overflow-hidden">
+    <main className="relative flex min-h-dvh flex-1 flex-col overflow-x-hidden">
       <PremiumBackground />
-      <div className="relative z-10 flex flex-1 flex-col">
+      <div className="safe-pb relative z-10 flex min-w-0 flex-1 flex-col">
         <ChapterEngine chapter={chapter} onNext={goToNext} />
       </div>
     </main>

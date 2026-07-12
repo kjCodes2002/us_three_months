@@ -14,7 +14,7 @@ export function PageTransition({ children }: PageTransitionProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -16 }}
       transition={{ duration: 0.6, ease }}
-      className="flex flex-1 flex-col"
+      className="flex min-w-0 flex-1 flex-col overflow-x-hidden"
     >
       {children}
     </motion.div>

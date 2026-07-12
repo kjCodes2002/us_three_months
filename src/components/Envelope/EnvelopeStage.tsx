@@ -27,7 +27,7 @@ export function EnvelopeStage({ prompt, onOpen }: EnvelopeStageProps) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, ease }}
-      className="flex min-h-[45dvh] flex-col items-center justify-center gap-8 px-4 sm:min-h-[50dvh] sm:gap-10 sm:px-6 md:gap-12"
+      className="flex min-h-[45dvh] w-full min-w-0 flex-col items-center justify-center gap-8 sm:min-h-[50dvh] sm:gap-10 md:gap-12"
     >
       <Envelope isOpen={isOpen} onClick={handleOpen} />
 

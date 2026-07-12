@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { memo, useEffect, useRef, useState } from 'react'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion'
 import type { Chapter } from '../../types/chapter'
 
 const ease = [0.22, 1, 0.36, 1] as const
-const FADE_IN_MS = 700
-const HOLD_MS = 1800
-const FADE_OUT_MS = 800
-const HIGHLIGHT_MS = 400
+const FADE_IN_MS = 500
+const HOLD_MS = 1500
+const FADE_OUT_MS = 400
+const HIGHLIGHT_MS = 350
 const WRONG_TINT_MS = 1000
 const WRONG_MESSAGE_MS = 2000
 
@@ -31,6 +32,7 @@ export const QuestionCard = memo(function QuestionCard({
   onCorrect,
 }: QuestionCardProps) {
   const prefersReducedMotion = usePrefersReducedMotion()
+  const canHover = useMediaQuery('(hover: hover)')
   const [selectedOption, setSelectedOption] = useState<string | null>(null)
   const [wrongOption, setWrongOption] = useState<string | null>(null)
   const [showWrongMessage, setShowWrongMessage] = useState(false)
@@ -95,11 +97,11 @@ export const QuestionCard = memo(function QuestionCard({
   }
 
   return (
-    <div className="relative flex min-h-[50dvh] flex-col justify-center">
+    <div className="relative flex min-h-[50dvh] min-w-0 flex-col justify-center">
       <motion.div
         animate={{ opacity: showSuccessMessage ? 0.35 : 1 }}
         transition={{ duration: 0.6, ease }}
-        className="flex w-full flex-col gap-6 sm:gap-8"
+        className="flex w-full min-w-0 flex-col gap-6 sm:gap-8"
       >
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -135,9 +137,11 @@ export const QuestionCard = memo(function QuestionCard({
                       ? { x: [0, -5, 5, -3, 3, 0] }
                       : { x: 0, y: 0 }
                   }
-                  whileHover={isAnswering || prefersReducedMotion ? undefined : { y: -2 }}
+                  whileHover={
+                    isAnswering || prefersReducedMotion || !canHover ? undefined : { y: -2 }
+                  }
                   transition={{ duration: 0.4 }}
-                  className={`min-h-11 w-full break-words rounded-sm border px-4 py-3.5 text-left font-serif text-[clamp(0.9375rem,1.5vw+0.5rem,1rem)] leading-snug transition-all duration-300 disabled:cursor-default sm:px-5 sm:py-4 ${
+                  className={`min-h-11 w-full touch-manipulation break-words rounded-sm border px-4 py-3.5 text-left font-serif text-[clamp(0.9375rem,1.5vw+0.5rem,1rem)] leading-snug outline-none transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:ring-offset-2 focus-visible:ring-offset-surface disabled:cursor-default sm:px-5 sm:py-4 ${
                     isWrongFeedback
                       ? 'border-red-400/45 bg-red-950/25 text-red-100/90'
                       : isCorrectSelection
@@ -180,7 +184,7 @@ export const QuestionCard = memo(function QuestionCard({
               duration: successPhase === 'exiting' ? FADE_OUT_MS / 1000 : FADE_IN_MS / 1000,
               ease,
             }}
-            className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-4 sm:px-6"
+            className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center safe-px"
           >
             <motion.p
               initial={{ opacity: 0, y: 12 }}
