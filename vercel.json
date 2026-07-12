@@ -1,16 +1,7 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "text/html"
-        }
-      ],
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
