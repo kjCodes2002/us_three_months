@@ -11,7 +11,7 @@ export const chapters: Chapter[] = [
     question:
       "Every story has a beginning.\n\nDo you remember the day we first talked to each other?",
     options: ["16 March", "17 March", "18 March", "19 March"],
-    correctAnswerIndex: 1,
+    correctAnswerIndex: 2,
     successMessage: "You remembered. ❤️",
     wrongAnswerMessage: "Hmm... that's not it. Try remembering again. 🫶🏻",
     envelopePrompt: "A letter from me...",
@@ -252,7 +252,7 @@ export const chapters: Chapter[] = [
 
       "I was trying so hard to protect you that I had forgotten to take care of my own heart.",
 
-      "Then one morning, you sent me a simple selfie after visiting the temple.",
+      "Then you sent me a simple selfie after visiting the temple.",
 
       "I remember opening it.",
 
