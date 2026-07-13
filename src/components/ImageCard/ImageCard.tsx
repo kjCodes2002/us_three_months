@@ -8,10 +8,10 @@ export const ImageCard = memo(function ImageCard({ src }: ImageCardProps) {
   const [isLoaded, setIsLoaded] = useState(false)
 
   return (
-    <div className="mx-auto w-full min-w-0 max-w-lg overflow-hidden rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-      <div className="relative aspect-[4/3] w-full bg-surface-overlay">
+    <div className="mx-auto w-full min-w-0 max-w-lg overflow-hidden rounded-lg shadow-[0_12px_40px_rgba(0,0,0,0.35)] bg-surface-overlay">
+      <div className="relative w-full flex items-center justify-center">
         {!isLoaded && (
-          <div aria-hidden className="absolute inset-0 animate-pulse bg-surface-raised" />
+          <div aria-hidden className="absolute inset-0 min-h-[300px] animate-pulse bg-surface-raised rounded-lg" />
         )}
         <img
           src={src}
@@ -20,7 +20,7 @@ export const ImageCard = memo(function ImageCard({ src }: ImageCardProps) {
           loading="lazy"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
-          className={`h-full w-full rounded-lg object-cover transition-opacity duration-500 ${
+          className={`w-full h-auto max-h-[70vh] rounded-lg object-contain transition-opacity duration-500 ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />

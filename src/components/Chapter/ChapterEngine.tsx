@@ -82,7 +82,7 @@ export function ChapterEngine({ chapter, onNext }: ChapterEngineProps) {
               fallback={
                 <div
                   aria-hidden
-                  className="mx-auto aspect-[4/3] w-full max-w-lg rounded-lg bg-surface-overlay"
+                  className="mx-auto min-h-[300px] w-full max-w-lg rounded-lg bg-surface-overlay animate-pulse"
                 />
               }
             >

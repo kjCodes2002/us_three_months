@@ -1,6 +1,7 @@
 import chapter2Image from "../assets/images/chapter2.jpeg";
 import chapter3Image from "../assets/images/chapter3.jpeg";
 import chapter5Image from "../assets/images/chapter5.jpeg";
+import chapter7Image from "../assets/images/chapter7.jpeg";
 import type { Chapter } from "../types/chapter";
 
 export const chapters: Chapter[] = [
@@ -284,6 +285,7 @@ export const chapters: Chapter[] = [
 
       "I choose all of you. Yesterday, today, and every tomorrow. ❤️",
     ],
+    image: chapter7Image,
     buttonText: "Open the final letter →",
   },
 ];
