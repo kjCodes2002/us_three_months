@@ -73,3 +73,8 @@ export function getResumePath(): string {
 export function getEntryPath(): string {
   return hasStartedReading() ? getResumePath() : '/opening'
 }
+
+export function clearReadingProgress(): void {
+  localStorage.removeItem(STORAGE_KEY)
+}
+

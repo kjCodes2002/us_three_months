@@ -5,7 +5,6 @@ import { PremiumBackground } from '../components/Background/PremiumBackground'
 import { Button } from '../components/Button/Button'
 import { Lock } from '../components/Lock/Lock'
 import { useGuardedAction } from '../hooks/useGuardedAction'
-import { getEntryPath, hasStartedReading } from '../lib/readingProgress'
 
 const ease = [0.22, 1, 0.36, 1] as const
 const FADE_DURATION = 1.2
@@ -65,9 +64,7 @@ function SceneThree() {
 
 function SceneFour() {
   const navigate = useNavigate()
-  const { invoke: unlock, isPending } = useGuardedAction(() =>
-    navigate(hasStartedReading() ? getEntryPath() : '/chapter/1'),
-  )
+  const { invoke: unlock, isPending } = useGuardedAction(() => navigate('/chapter/1'))
 
   return (
     <div className="flex w-full max-w-md flex-col items-center gap-8 text-center sm:gap-10 md:gap-12">

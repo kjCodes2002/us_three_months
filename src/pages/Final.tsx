@@ -5,7 +5,7 @@ import { FinalLetter } from '../components/Final/FinalLetter'
 import { ProposalSection } from '../components/Final/ProposalSection'
 import { StarryBackground } from '../components/Final/StarryBackground'
 import { FINAL_LETTER, FINAL_PROPOSAL } from '../data/final'
-import { getResumePath, hasCompletedAllChapters } from '../lib/readingProgress'
+import { getResumePath, hasCompletedAllChapters, clearReadingProgress } from '../lib/readingProgress'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -14,7 +14,7 @@ type FinalStage = 'black' | 'letter' | 'proposal' | 'finale' | 'closing'
 export default function Final() {
   const [stage, setStage] = useState<FinalStage>('black')
   const [showChapterEight, setShowChapterEight] = useState(false)
-  const canAccessFinal = hasCompletedAllChapters()
+  const [canAccessFinal] = useState(() => hasCompletedAllChapters())
 
   useEffect(() => {
     if (!canAccessFinal) return
@@ -26,7 +26,10 @@ export default function Final() {
   useEffect(() => {
     if (!canAccessFinal || stage !== 'finale') return
 
-    const chapterTimer = setTimeout(() => setShowChapterEight(true), 3000)
+    const chapterTimer = setTimeout(() => {
+      setShowChapterEight(true)
+      clearReadingProgress()
+    }, 3000)
     return () => clearTimeout(chapterTimer)
   }, [canAccessFinal, stage])
 

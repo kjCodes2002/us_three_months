@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { PremiumBackground } from '../components/Background/PremiumBackground'
 import { Button } from '../components/Button/Button'
 import { useGuardedAction } from '../hooks/useGuardedAction'
-import { getEntryPath } from '../lib/readingProgress'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -18,7 +17,7 @@ const fadeUp = (delay: number) => ({
 
 export default function Landing() {
   const navigate = useNavigate()
-  const { invoke: begin, isPending } = useGuardedAction(() => navigate(getEntryPath()))
+  const { invoke: begin, isPending } = useGuardedAction(() => navigate('/opening'))
 
   return (
     <main className="safe-px safe-pt safe-pb relative flex min-h-dvh flex-1 flex-col items-center justify-center overflow-x-hidden">
